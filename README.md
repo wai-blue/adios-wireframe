@@ -27,7 +27,7 @@ Create an empty folder, e.g. `my-adios-app-wireframe`.
 **config.php**
 ```php
 $config = [];
-$config['skin'] = 'wireframe'; // options: blue, cyan, green, wireframe
+$config['skin'] = 'wireframe'; // Optional. If empty, default skin will be used. Options: blue, cyan, green, wireframe
 $config['projectName'] = 'My ADIOS app';
 $config['rewriteBase'] = '/my-adios-app-wireframe';
 ```
