@@ -30,6 +30,11 @@ $config = [];
 $config['skin'] = 'wireframe'; // Optional. If empty, default skin will be used. Options: blue, cyan, green, wireframe
 $config['projectName'] = 'My ADIOS app';
 $config['rewriteBase'] = '/my-adios-app-wireframe';
+$config['sidebarItems'] = [
+  '' => ['text' => 'Home', 'icon' => 'fas fa-home'],
+  'contacts' => ['text' => 'Contacts', 'icon' => 'fas fa-user'],
+  'calendar' => ['text' => 'Calendar', 'icon' => 'fas fa-calendar'],
+];
 ```
 
 **index.php**
