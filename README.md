@@ -9,8 +9,9 @@ Create an empty folder, e.g. `my-adios-app-wireframe`.
   2. Run `composer install` in that folder.
   3. Create `config.php` file, see below.
   4. Create `index.php` file, see below.
-  5. Open the `index.php` in your browser.
-  6. Create `wireframes` folder and add your wireframes TWIG files. Start with `index.twig`, see example below.
+  5. For Apache web brower, create `.htaccess` file, see below.
+  6. Open the `index.php` in your browser.
+  7. Create `wireframes` folder and add your wireframes TWIG files. Start with `index.twig`, see example below.
 
 
 **composer.json**
@@ -64,4 +65,15 @@ echo $loader->render($wireframe);
   <div class="col-6">
   </div>
 </div>
+```
+
+**.htaccess**
+```
+RewriteEngine On
+
+RewriteRule ^assets/(.*)$ vendor/wai-blue/adios-wireframe/src/assets/$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?wireframe=$1&%{QUERY_STRING}
 ```
