@@ -1,0 +1,7 @@
+{% if type == 'close' %}
+{% set text, icon, cssClass, onclick = 'Close', 'fas fa-times', 'btn-light', 'window_close("the_window")' %}
+{% endif %}
+<a class="adios ui Button btn {{ cssClass }} btn-icon-split" href="{{ href ?? '#' }}" onclick="{{ onclick }}">
+  <span class="icon"><i class="{{ icon }}"></i></span>
+  <span class="text">{{ text }}</span>
+</a>

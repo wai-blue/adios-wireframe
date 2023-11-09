@@ -1,0 +1,49 @@
+{% set minRowCount = (minRowCount <= 0 ? 3 : minRowCount) %}
+{% set maxRowCount = (maxRowCount <= 0 ? 15 : maxRowCount) %}
+{% if (minRowCount > maxRowCount) %}{% set maxRowCount = minRowCount %}{% endif %}
+
+{% if title %}
+  {{ include('components/title.twig', {
+    'title': title.text,
+    'left': title.leftButtons
+  }) }}
+{% endif %}
+
+<div class="adios ui Table Container desktop">
+  <div class="adios ui Table Header">
+    <div class="Row ColumnNames">
+      {% for column in columns %}
+        <div class="cell unordered">
+          {{ column }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="Row ColumnFilters">
+      {% for column in columns %}
+        <div class="cell unordered">
+          <input
+            type="text"
+            placeholder="🔍"
+            required="required"
+          >
+        </div>
+      {% endfor %}
+    </div>
+    <div class="adios ui Table Content">
+      {% for rowNr in 1..minRowCount %}
+        <div class="Row">
+          {% for column in columns %}
+            <div class="cell"> ... </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      {% for rowNr in 1..random(maxRowCount - minRowCount) %}
+        <div class="Row">
+          {% for column in columns %}
+            <div class="cell"> ... </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel='shortcut icon' href='{{ config.rewriteBase }}/assets/images/favicon.png'>
+  <title>BladeERP | Wireframe</title>
+  <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/cache.css' rel="stylesheet">
+  <script src='{{ config.rewriteBase }}/assets/js/cache.js'></script>
+  <script src='{{ config.rewriteBase }}/assets/js/my_functions.js'></script>
+  <script>
+    var _APP_URL = '{{ config.rewriteBase }}';
+  </script>
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ config.rewriteBase }}">
+        <div class="sidebar-brand-icon">
+          <img src="{{ config.rewriteBase }}/assets/images/logo-light.png" />
+        </div>
+      </a>
+
+      <li class="nav-item" style="">
+        <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item" style="">
+        <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}/contacts">
+          <i class="fas fa-home"></i>
+          <span>Contacts</span>
+        </a>
+      </li>
+    </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content"> <!-- onclick="if (event.srcElement == this) { window_close_all(); }"> -->
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar static-top row shadow">
+          <div class="col col-10">BladeERP | Sharpen your business</div>
+
+          <!-- Topbar Navbar -->
+          <div class="col col-2">
+            <ul class="navbar-nav flex-row-reverse">
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle " href="javascript:void(0)" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
+                  <i class='btn btn-primary btn-sm btn-circle fas fa-user-tie' style='font-weight:900'></i>
+                </a>
+              </li>
+              
+              <!-- Language selection -->
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle " href="javascript:void(0)" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">SK</span>
+                  <i class='btn btn-light btn-sm fas fa-language'></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="adios main-content">
+          <div class="windows">
+            <div class="windows-content"></div>
+          </div>
+          <div class="desktop">
+            <div class="desktop-content">
+              {{ desktopContentHtml|raw }}
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+</body>
+
+</html>

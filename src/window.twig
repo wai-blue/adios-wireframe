@@ -1,0 +1,31 @@
+<div class="adios ui Window" id="the_window">
+  <div class="modal-overlay"></div>
+    <div class="header">
+      <div class="float-right text-right">
+        {{ include('components/button.twig', {'type': 'close'}) }}
+      </div>
+      <div class="row">
+        <div class="col-10 h3 text-primary">
+          {{ title }}
+          <div class="h6 mb-4">
+            {{ subTitle }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{ header.left|raw }}
+        </div>
+        <div class="col-6 text-right">
+          {{ header.right|raw }}
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      {{ windowContentHtml|raw }}
+    </div>
+  </div>
+  <script>
+    window_post_render($('the_window'), '', '', {}, {});
+  </script>
+</div>
