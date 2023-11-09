@@ -13,7 +13,7 @@
   <script src='{{ config.rewriteBase }}/assets/js/cache.js'></script>
   <script src='{{ config.rewriteBase }}/assets/js/my_functions.js'></script>
   {% if config.skin != '' %}
-    <link rel=stylesheet type='text/css' href='{{ config.url }}/adios/assets/css/skins/{{ config.skin }}.css' rel="stylesheet">
+    <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/skins/{{ config.skin }}.css' rel="stylesheet">
   {% endif %}
   <script>
     var _APP_URL = '{{ config.rewriteBase }}';
