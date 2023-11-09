@@ -33,18 +33,14 @@
         </div>
       </a>
 
-      <li class="nav-item" style="">
-        <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}">
-          <i class="fas fa-home"></i>
-          <span>Home</span>
-        </a>
-      </li>
-      <li class="nav-item" style="">
-        <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}/contacts">
-          <i class="fas fa-home"></i>
-          <span>Contacts</span>
-        </a>
-      </li>
+      {% for url, item in config.sidebarItems %}
+        <li class="nav-item" style="">
+          <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}/{{ url }}">
+            <i class="{{ item.icon }}"></i>
+            <span>{{ item.text }}</span>
+          </a>
+        </li>
+      {% endfor %}
     </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">
