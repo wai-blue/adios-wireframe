@@ -27,7 +27,8 @@ Create an empty folder, e.g. `my-adios-app-wireframe`.
 **config.php**
 ```php
 $config = [];
-$config['rewriteBase'] = '/github/bladeerp-docs/_wireframe';
+$config['projectName'] = 'My ADIOS app';
+$config['rewriteBase'] = '/my-adios-app-wireframe';
 ```
 
 **index.php**
