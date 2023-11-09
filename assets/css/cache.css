@@ -5181,8 +5181,7 @@ pre code {
 .col-xl-auto {
   position: relative;
   width: 100%;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  padding: 0.5rem;
 }
 
 .col {
@@ -8905,10 +8904,19 @@ input[type="button"].btn-block {
   border-bottom-right-radius: 0.35rem;
   border-bottom-left-radius: 0.35rem;
 }
-
 .card-body {
   flex: 1 1 auto;
-  padding: 1.25rem;
+  padding: 0;
+}
+
+.todo-tag {
+  background-color: var(--blue);
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10px;
 }
 
 .card-title {

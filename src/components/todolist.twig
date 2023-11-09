@@ -1,0 +1,56 @@
+{% set minRowCount = (minRowCount <= 0 ? 5 : minRowCount) %}
+{% set maxRowCount = (maxRowCount <= 0 ? 5 : maxRowCount) %}
+{% if (minRowCount > maxRowCount) %}
+  {% set maxRowCount = minRowCount %}
+{% endif %}
+
+{% if title %}
+  {{ include('components/title.twig', {
+    'title': title.text,
+    'left': title.leftButtons
+  }) }}
+{% endif %}
+
+<div class="adios ui Table Container desktop">
+  <div class="adios ui Table Header">
+    <div class="Row ColumnNames">
+      {% for column in columns %}
+        <div class="cell unordered">
+          {{ column }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="Row ColumnFilters">
+      <div class="cell unordered"></div>
+      <div class="cell unordered">
+        <input type="text" placeholder="🔍" required="required">
+      </div>
+      <div class="cell unordered">
+        <input type="text" placeholder="🔍" required="required">
+      </div>
+      <div class="cell unordered"></div>
+
+    </div>
+    <div class="adios ui Table Content">
+      {% for rowNr in 1..minRowCount %}
+        <div class="Row">
+          <div class="cell" style="max-width: 20px;">
+            <input type="checkbox" name="" id="">
+          </div>
+          <div class="cell">
+            Task Name
+          </div>
+          <div class="cell">
+            {{ include('components/tag.twig', {
+            'text': 'Tag Name',
+          }) }}
+          </div>
+          <div class="cell">
+            ...
+          </div>
+        </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+</div>
