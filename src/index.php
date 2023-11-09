@@ -1,0 +1,45 @@
+<?php
+
+namespace AdiosWireframe;
+
+class Loader {
+
+  public $twig;
+  public array $options = [];
+  public array $config = [];
+
+  public function __construct(array $options, array $config) {
+    $this->options = $options;
+    $this->config = $config;
+
+    $this->twig = new \Twig\Environment(
+      new \Twig\Loader\FilesystemLoader([__DIR__ . '/templates', (string) ($options['wireframesDir'] ?? '')]),
+      [
+        'cache' => FALSE,
+        'debug' => TRUE,
+      ]
+    );
+  }
+
+  public function render(string $wireframe): string {
+    $html = '';
+    $wireframe = $wireframe ?? 'index';
+    $isWindow = (bool) ($this->options['isWindow'] ?? false);
+
+    $wireframeContentHtml = $twig->load('wireframes/' . $wireframe . '.twig')->render();
+
+    if ($isWindow) {
+      $html = $twig->load('window.twig')->render([
+        'config' => $this->config,
+        'windowContentHtml' => $wireframeContentHtml,
+      ]);
+    } else {
+      $html = $twig->load('desktop.twig')->render([
+        'config' => $this->config,
+        'desktopContentHtml' => $wireframeContentHtml,
+      ]);
+    }
+
+    return $html;
+  }
+}
