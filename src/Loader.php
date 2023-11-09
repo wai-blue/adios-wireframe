@@ -26,15 +26,15 @@ class Loader {
     $wireframe = $wireframe ?? 'index';
     $isWindow = (bool) ($this->options['isWindow'] ?? false);
 
-    $wireframeContentHtml = $twig->load('wireframes/' . $wireframe . '.twig')->render();
+    $wireframeContentHtml = $this->twig->load($wireframe . '.twig')->render();
 
     if ($isWindow) {
-      $html = $twig->load('window.twig')->render([
+      $html = $this->twig->load('window.twig')->render([
         'config' => $this->config,
         'windowContentHtml' => $wireframeContentHtml,
       ]);
     } else {
-      $html = $twig->load('desktop.twig')->render([
+      $html = $this->twig->load('desktop.twig')->render([
         'config' => $this->config,
         'desktopContentHtml' => $wireframeContentHtml,
       ]);
