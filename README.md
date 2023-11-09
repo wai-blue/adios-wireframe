@@ -9,9 +9,10 @@ Create an empty folder, e.g. `my-adios-app-wireframe`.
   2. Run `composer install` in that folder.
   3. Create `config.php` file, see below.
   4. Create `index.php` file, see below.
-  5. For Apache web brower, create `.htaccess` file, see below.
-  6. Open the `index.php` in your browser.
-  7. Create `wireframes` folder and add your wireframes TWIG files. Start with `index.twig`, see example below.
+  5. Copy a `logo.png` file containing logo of your project.
+  6. For Apache web brower, create `.htaccess` file, see below.
+  7. Open the `index.php` in your browser.
+  8. Create `wireframes` folder and add your wireframes TWIG files. Start with `index.twig`, see example below.
 
 
 **composer.json**
