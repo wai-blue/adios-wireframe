@@ -1,4 +1,14 @@
 {
+  "name": "wai-blue/adios-wireframe",
+  "description": "TWIG-based wireframing package for ADIOS applications",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+      "psr-4": {
+          "AdiosWireframe\\": "src/"
+      }
+  },
+  "minimum-stability": "dev",
   "require": {
     "twig/twig": "^3.0",
     "wai-blue/adios": "^1.1"

@@ -1,0 +1,94 @@
+<style>
+  #{{ uid }}_div {
+    grid-template-areas:
+      {% for areaName, areaContent in areas %}
+        '{{ areaName }}'
+      {% endfor %}
+    ;
+    {{ style }}
+  }
+
+  {% if layoutSm is iterable %}
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) {
+      #{{ uid }}_div {
+        grid-template-areas:
+          {% for layoutRow in layoutSm %}
+            '{{ layoutRow }}'
+          {% endfor %}
+        !important;
+      }
+    }
+  {% endif %}
+
+  {% if layoutMd is iterable %}
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      #{{ uid }}_div {
+        grid-template-areas:
+          {% for layoutRow in layoutMd %}
+            '{{ layoutRow }}'
+          {% endfor %}
+        !important;
+      }
+    }
+  {% endif %}
+
+  {% if layoutLg is iterable %}
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+      #{{ uid }}_div {
+        grid-template-areas:
+          {% for layoutRow in layoutLg %}
+            '{{ layoutRow }}'
+          {% endfor %}
+        !important;
+      }
+    }
+  {% endif %}
+
+  {% if layoutXl is iterable %}
+    /* X-Large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+      #{{ uid }}_div {
+        grid-template-areas:
+          {% for layoutRow in layoutXl %}
+            '{{ layoutRow }}'
+          {% endfor %}
+        !important;
+      }
+    }
+  {% endif %}
+
+  {% if layoutXxl is iterable %}
+    /* XX-Large devices (larger desktops, 1400px and up) */
+    @media (min-width: 1400px) {
+      #{{ uid }}_div {
+        grid-template-areas:
+          {% for layoutRow in layoutXXl %}
+            '{{ layoutRow }}'
+          {% endfor %}
+        !important;
+      }
+    }
+  {% endif %}
+
+
+  {% for areaName, areaContent in areas %}
+    .{{ uid }}-area-{{ areaName }} { grid-area: {{ areaName }}; }
+  {% endfor %}
+</style>
+
+<div
+  class='adios ui Grid {{ cssClass }}'
+  id='{{ uid }}_div'
+>
+  {% for areaName, areaContent in areas %}
+    <div
+      class="area {{ uid }}-area-{{ areaName }}"
+      data-area="{{ areaName }}"
+    >
+      {{ areaContent|raw }}
+    </div>
+  {% endfor %}
+</div>

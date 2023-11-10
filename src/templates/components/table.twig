@@ -31,14 +31,14 @@
     </div>
     <div class="adios ui Table Content">
       {% for rowNr in 1..minRowCount %}
-        <div class="Row">
+        <div class="Row" onclick="{{ onclick }}">
           {% for column in columns %}
             <div class="cell"> ... </div>
           {% endfor %}
         </div>
       {% endfor %}
       {% for rowNr in 1..random(maxRowCount - minRowCount) %}
-        <div class="Row">
+        <div class="Row" onclick="{{ onclick }}">
           {% for column in columns %}
             <div class="cell"> ... </div>
           {% endfor %}
