@@ -1,0 +1,15 @@
+<div class="shadow-sm m-1">
+  {{ include('components/table.twig', {
+    'title': {
+      'text': 'Contacts',
+      'leftButtons': include('components/button.twig', {'cssClass': 'btn-primary', 'text': 'Add contact', 'icon': 'fas fa-plus', 'onclick': 'add_contact()'}),
+    },
+    'columns': [
+      'Given Name',
+      'Last Name',
+      'Age'
+    ],
+    'minRowCount': 5,
+    'maxRowCount': 15
+  }) }}
+</div>

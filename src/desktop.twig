@@ -8,13 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel='shortcut icon' href='{{ config.rewriteBase }}/assets/images/favicon.png'>
-  <title>{{ config.projectName }} | Wireframe</title>
+  <title>BladeERP | Wireframe</title>
   <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/cache.css' rel="stylesheet">
   <script src='{{ config.rewriteBase }}/assets/js/cache.js'></script>
-  <script src='{{ config.rewriteBase }}/index.js'></script>
-  {% if config.skin != '' %}
-    <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/skins/{{ config.skin }}.css' rel="stylesheet">
-  {% endif %}
+  <script src='{{ config.rewriteBase }}/assets/js/my_functions.js'></script>
   <script>
     var _APP_URL = '{{ config.rewriteBase }}';
   </script>
@@ -29,18 +26,22 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ config.rewriteBase }}">
         <div class="sidebar-brand-icon">
-          <img src="{{ config.rewriteBase }}/logo.png" />
+          <img src="{{ config.rewriteBase }}/assets/images/logo-light.png" />
         </div>
       </a>
 
-      {% for url, item in config.sidebarItems %}
-        <li class="nav-item" style="">
-          <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}/{{ url }}">
-            <i class="{{ item.icon }}"></i>
-            <span>{{ item.text }}</span>
-          </a>
-        </li>
-      {% endfor %}
+      <li class="nav-item" style="">
+        <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item" style="">
+        <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}/contacts">
+          <i class="fas fa-home"></i>
+          <span>Contacts</span>
+        </a>
+      </li>
     </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">
@@ -50,7 +51,7 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar static-top row shadow">
-          <div class="col col-10">{{ config.projectName }} | Wireframe</div>
+          <div class="col col-10">BladeERP | Sharpen your business</div>
 
           <!-- Topbar Navbar -->
           <div class="col col-2">
