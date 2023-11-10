@@ -1,10 +1,11 @@
+{% if not options %}
+  {% set options = ['Option #1', 'Option #2', 'Option #3'] %}
+{% endif %}
 <div class="adios ui Form item">
   <div class="input-title">{{ title }}</div>
   <div class="input-content">
     <select>
-      <option>Option #1</option>
-      <option>Option #2</option>
-      <option>Option #3</option>
+      {% for option in options %} <option>{{ option }}</option>{% endfor %}
     </select>
   </div>
 </div>

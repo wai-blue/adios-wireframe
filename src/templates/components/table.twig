@@ -1,49 +1,117 @@
+{% macro cellContent(config, columnType) %}
+  {% set lipsumTexts = [
+    "Nunc ac sollicitudin ipsum. Vestibulum condimentum vitae justo quis bibendum. Fusce et scelerisque dui, eu placerat nisl.",
+    "Proin ut efficitur velit, nec rutrum massa. Integer ullamcorper lacus at nisi posuere posuere.",
+    "Maecenas malesuada magna id fringilla sagittis. Nam sed turpis feugiat, placerat nisi et, gravida lacus.",
+    "Curabitur porta elementum suscipit. Praesent libero diam, vulputate sed varius eget, luctus a risus.",
+    "Praesent sit amet neque commodo, varius nisl dignissim, tincidunt magna. Nunc tincidunt dignissim ligula, sit amet facilisis felis mollis vel.",
+    "Sed ut ligula luctus, ullamcorper felis nec, tristique lorem. Maecenas sit amet tincidunt enim.",
+    "Mauris blandit ligula massa, sit amet auctor risus viverra at. Cras rhoncus molestie malesuada.",
+    "Sed facilisis blandit augue, eu suscipit lectus vehicula quis. Mauris efficitur elementum feugiat.",
+    "Nulla posuere dui sit amet elit efficitur iaculis. Cras elit ligula, feugiat vitae maximus quis, volutpat sit amet sapien.",
+    "Vivamus varius magna fermentum dolor varius, vel scelerisque ante mollis."
+  ] %}
+  {% if columnType == 'varchar' %}
+    {{ random(lipsumTexts)|slice(0, 15) }}
+  {% elseif columnType == 'text' %}
+    {{ random(lipsumTexts) }}
+  {% elseif columnType == 'time' %}
+    {{ random(10, 23) }}:{{ random(10, 59) }}
+  {% elseif columnType == 'date' %}
+    {{ random(10, 28) }}.{{ random(1, 12) }}.20{{ random(20, 50) }}
+  {% elseif columnType == 'lookup' %}
+    <span class="text-primary">{{ random(lipsumTexts)|slice(0, 15) }}</span>
+  {% elseif columnType == 'color' %}
+    {% set colors = ['#000000', '#666666', '#AAAAAA', '#EEEEEE', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'] %}
+    <div style="background:{{ random(colors) }};display:inline-block;width:2em;height:1em;cursor:pointer;border-radius:0.25em;margin:0.12em">&nbsp;</div>
+  {% elseif columnType == 'image' %}
+    <img src="{{ config.rewriteBase }}/assets/images/image.png" style="height:3.5em">
+  {% else %}
+    ...
+  {% endif %}
+{% endmacro %}
 {% set minRowCount = (minRowCount <= 0 ? 3 : minRowCount) %}
 {% set maxRowCount = (maxRowCount <= 0 ? 15 : maxRowCount) %}
 {% if (minRowCount > maxRowCount) %}{% set maxRowCount = minRowCount %}{% endif %}
 
+{% set titleRightContent %}
+  <input
+    type='input'
+    class='form-control p-2'
+    style='width:15em'
+    placeholder='Press Enter to search...'
+  />
+
+  <span class='dropdown'>
+    <a
+      href='javascript:void(0);'
+      role='button'
+      class='btn btn-light'
+      data-toggle='dropdown'
+      aria-haspopup='true'
+      aria-expanded='false'
+    >
+      <span class='icon'><i class='fas fa-ellipsis-v'></i></span>
+    </a>
+    <div class='dropdown-menu' aria-labelledby='{$this->uid}_dropdown_menu_button'>
+      <a class='dropdown-item' href='javascript:void(0)'>
+        <i class="fas fa-search mr-2"></i> Advanced search
+      </a>
+      <a class='dropdown-item' href='javascript:void(0)'>
+        <i class="fas fa-file-export mr-2"></i> Export to CSV
+      </a>
+      <a class='dropdown-item' href='javascript:void(0)'>
+        <i class="fas fa-print mr-2"></i> Print
+      </a>
+    </div>
+  </span>
+{% endset %}
+
 {% if title %}
   {{ include('components/title.twig', {
     'title': title.text,
-    'left': title.leftButtons
+    'left': title.leftButtons,
+    'right': titleRightContent
   }) }}
 {% endif %}
 
-<div class="adios ui Table Container desktop">
-  <div class="adios ui Table Header">
-    <div class="Row ColumnNames">
-      {% for column in columns %}
-        <div class="cell unordered">
-          {{ column }}
-        </div>
-      {% endfor %}
-    </div>
-    <div class="Row ColumnFilters">
-      {% for column in columns %}
-        <div class="cell unordered">
-          <input
-            type="text"
-            placeholder="🔍"
-            required="required"
-          >
-        </div>
-      {% endfor %}
-    </div>
-    <div class="adios ui Table Content">
-      {% for rowNr in 1..minRowCount %}
-        <div class="Row" onclick="{{ onclick }}">
-          {% for column in columns %}
-            <div class="cell"> ... </div>
-          {% endfor %}
-        </div>
-      {% endfor %}
-      {% for rowNr in 1..random(maxRowCount - minRowCount) %}
-        <div class="Row" onclick="{{ onclick }}">
-          {% for column in columns %}
-            <div class="cell"> ... </div>
-          {% endfor %}
-        </div>
-      {% endfor %}
+<div class="shadow-sm m-2">
+  <div class="adios ui Table Container desktop">
+    <div class="adios ui Table Header">
+      <div class="Row ColumnNames">
+        {% for column in columns %}
+          <div class="cell unordered">
+            {{ column }}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="Row ColumnFilters">
+        {% for column in columns %}
+          <div class="cell unordered">
+            <input
+              type="text"
+              placeholder="🔍"
+              required="required"
+            >
+          </div>
+        {% endfor %}
+      </div>
+      <div class="adios ui Table Content">
+        {% for rowNr in 1..minRowCount %}
+          <div class="Row" onclick="{{ onclick }}">
+            {% for column in columns %}
+              <div class="cell">{{ _self.cellContent(config, columnTypes[loop.index - 1] ?? '') }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        {% for rowNr in 1..random(maxRowCount - minRowCount) %}
+          <div class="Row" onclick="{{ onclick }}">
+            {% for column in columns %}
+              <div class="cell">{{ _self.cellContent(config, columnTypes[loop.index - 1] ?? '') }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>

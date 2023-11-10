@@ -1,0 +1,8 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    {% for href, item in previous %}
+      <li class="breadcrumb-item"><a href="{{ config.rewriteBase }}/{{ href }}" class="text-primary">{{ item }}</a></li>
+    {% endfor %}
+    <li class="breadcrumb-item">{{ last }}</li>
+  </ol>
+</nav>
