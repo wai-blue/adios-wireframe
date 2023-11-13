@@ -2,6 +2,7 @@
   <div class="input-title">{{ title }}</div>
   {% if description %}<div class="input-description">{{ description }}</div>{% endif %}
   <div class="input-content">
-    <textarea></textarea>
+    <input type="text" value="{{ value }}" style="width:5em">
+    {{ unit }}
   </div>
 </div>

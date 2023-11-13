@@ -1,5 +1,6 @@
 <div class="adios ui Form item">
   <div class="input-title">{{ title }}</div>
+  {% if description %}<div class="input-description">{{ description }}</div>{% endif %}
   <div class="input-content">
     <img src="{{ config.rewriteBase }}/assets/images/image.png" style="width:10em">
   </div>

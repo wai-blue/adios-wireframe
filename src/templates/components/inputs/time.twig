@@ -1,8 +1,7 @@
 <div class="adios ui Form item">
   <div class="input-title">{{ title }}</div>
+  {% if description %}<div class="input-description">{{ description }}</div>{% endif %}
   <div class="input-content">
-    <input type="text" placeholder="HH" style="display:inline-block;width:2em">
-    :
-    <input type="text" placeholder="MM" style="display:inline-block;width:2em">
+    <input type="time" step="900" value="{{ value }}">
   </div>
 </div>

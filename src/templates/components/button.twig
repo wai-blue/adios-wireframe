@@ -1,5 +1,11 @@
+{% if type == 'save' %}
+  {% set text, icon, cssClass, onclick = 'Save', 'fas fa-check', 'btn-success', 'window_close("the_window")' %}
+{% endif %}
+{% if type == 'delete' %}
+  {% set text, icon, cssClass, onclick = 'Delete', 'fas fa-trash-alt', 'btn-danger', 'window_close("the_window")' %}
+{% endif %}
 {% if type == 'close' %}
-{% set text, icon, cssClass, onclick = 'Close', 'fas fa-times', 'btn-light', 'window_close("the_window")' %}
+  {% set text, icon, cssClass, onclick = 'Close', 'fas fa-times', 'btn-light', 'window_close("the_window")' %}
 {% endif %}
 <a class="adios ui Button btn {{ cssClass }} btn-icon-split" href="{{ href ?? '#' }}" onclick="{{ onclick }}">
   <span class="icon"><i class="{{ icon }}"></i></span>

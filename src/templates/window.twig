@@ -7,9 +7,7 @@
       <div class="row">
         <div class="col-10 h3 text-primary">
           {{ title }}
-          <div class="h6 mb-4">
-            {{ subTitle }}
-          </div>
+          {% if subTitle %} <div class="h6 mb-4">{{ subTitle }}</div> {% endif %}
         </div>
       </div>
       <div class="row">

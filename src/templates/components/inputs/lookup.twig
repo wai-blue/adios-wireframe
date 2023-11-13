@@ -3,6 +3,7 @@
 {% endif %}
 <div class="adios ui Form item">
   <div class="input-title">{{ title }}</div>
+  {% if description %}<div class="input-description">{{ description }}</div>{% endif %}
   <div class="input-content">
     <select>
       {% for option in options %} <option>{{ option }}</option>{% endfor %}
