@@ -34,10 +34,10 @@
       </a>
 
       {% for url, item in config.sidebarItems %}
-        <li class="nav-item" style="">
+        <li class="nav-item" style="{{ item.cssStyle }}">
           <a id="nav-link-1" class="nav-link" href="{{ config.rewriteBase }}/{{ url }}">
-            <i class="{{ item.icon }}"></i>
-            <span>{{ item.text }}</span>
+            {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
+            <span>{{ item.text|raw }}</span>
           </a>
         </li>
       {% endfor %}
@@ -58,9 +58,18 @@
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle " href="javascript:void(0)" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrator</span>
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ config.userRole }}</span>
                   <i class='btn btn-primary btn-sm btn-circle fas fa-user-tie' style='font-weight:900'></i>
                 </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  {% for userRole in config.userRoles %}
+                    <a class="dropdown-item" href="?setUserRole={{ loop.index - 1 }}">
+                      <i class="{{ item.fa_icon }} fa-sm fa-fw mr-2 text-gray-400"></i>
+                      {{ userRole }}
+                    </a>
+                  {% endfor %}
+                </div>
               </li>
               
               <!-- Language selection -->
