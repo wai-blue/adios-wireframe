@@ -36,10 +36,10 @@ class Loader {
     if ($isWindow) {
       $html = $wireframeContentHtml;
     } else {
-      $html = $this->twig->load('desktop.twig')->render([
+      $html = $this->twig->load($this->config['mainTemplate'] . '.twig')->render([
         'config' => $this->config,
         'data' => $this->data,
-        'desktopContentHtml' => $wireframeContentHtml,
+        'content' => $wireframeContentHtml,
       ]);
     }
 
