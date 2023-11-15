@@ -1,0 +1,29 @@
+<div class="adios ui Form item">
+  <div class="input-title">{{ title }}</div>
+  {% if description %}<div class="input-description">{{ description }}</div>{% endif %}
+  <div class="input-content">
+    <textarea id="{{ uid }}" style="display:none">{{ value }}</textarea>
+    <div id="{{ uid }}_editor" style="{{ cssStyle }}"></div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() {
+    var {{ uid }}_quill = new Quill('#{{ uid }}_editor', {
+      theme: 'snow',
+      placeholder: '{{ placeholder }}'
+    });
+
+    let delta = {{ uid }}_quill.clipboard.convert(
+      $('#{{ uid }}').val()
+    );
+    
+    {{ uid }}_quill.setContents(delta);
+    
+    {{ uid }}_quill.on('editor-change', function(eventName, ...args) {
+      $('#{{ uid }}').val({{ uid }}_quill.root.innerHTML);
+    });
+    
+
+  }, 10);
+</script>
