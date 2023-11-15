@@ -17170,6 +17170,13 @@ body .ui-tooltip {
 	clear: both;
 	cursor: crosshair;
 }
+.graph {
+  display: block;
+  padding: 20px;
+  height: auto;
+  width: 70%;
+  margin: 0 auto;
+}
 
 .window_panel .ui-resizable-handle.ui-resizable-se {width:4px;right:-2px;bottom:-1px;}
 

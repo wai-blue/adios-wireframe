@@ -17,38 +17,6 @@
           onclick': 'add_contact()'})}}
     </div>
   </div>
-  <div class="col-4">
-    <div class="row" style="padding: 0.5rem 0">
-      {{include('components/button.twig', {
-          'cssClass': 'btn-primary', 
-          'text': 'Add contact', 
-          'icon': 'fas fa-plus', '
-          onclick': 'add_contact()'})}}
-    </div>
-    <div class="row" style="padding: 0.5rem 0">
-      {{include('components/button.twig', {
-          'cssClass': 'btn-primary', 
-          'text': 'Add contact', 
-          'icon': 'fas fa-plus', '
-          onclick': 'add_contact()'})}}
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="row" style="padding: 0.5rem 0">
-      {{include('components/button.twig', {
-          'cssClass': 'btn-primary', 
-          'text': 'Add contact', 
-          'icon': 'fas fa-plus', '
-          onclick': 'add_contact()'})}}
-    </div>
-    <div class="row" style="padding: 0.5rem 0">
-      {{include('components/button.twig', {
-          'cssClass': 'btn-primary', 
-          'text': 'Add contact', 
-          'icon': 'fas fa-plus', '
-          onclick': 'add_contact()'})}}
-    </div>
-  </div>
 </div>
 
 
@@ -92,11 +60,12 @@
     </div>
   </div>
   <div class="row">
+  {# Graph #}
     <div class="col-8">
       <div class="row-8">
         {{ include('components/card.twig', {
-        'title': 'Graph',
-        'content': include('components/table.twig', {
+        'title': 'Tržby za rok 2023',
+        'content': include('components/graph.twig', {
           'columns': [
             'Given Name',
             'Last Name',

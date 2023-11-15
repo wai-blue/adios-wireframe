@@ -1,5 +1,5 @@
-{% set minRowCount = (minRowCount <= 0 ? 3 : minRowCount) %}
-{% set maxRowCount = (maxRowCount <= 0 ? 3 : maxRowCount) %}
+{% set minRowCount = (minRowCount <= 0 ? 5 : minRowCount) %}
+{% set maxRowCount = (maxRowCount <= 0 ? 10 : maxRowCount) %}
 {% if (minRowCount > maxRowCount) %}{% set maxRowCount = minRowCount %}{% endif %}
 
 {% if title %}
