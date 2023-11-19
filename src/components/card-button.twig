@@ -1,0 +1,5 @@
+<a href="{{ href ?? 'javascript:void(0)' }}" onclick="{{ onclick }}" class="btn {{ cssClass }} shadow-sm mb-1 p-4" style="width:14em">
+  <i class="{{ icon }}" style="font-size:4em"></i>
+  <div class="text-center pt-4 mt-4 h5">{{ text }}</div>
+  {% if subtitle %}<div class="text-center small">{{ subtitle }}</div>{% endif %}
+</a>
