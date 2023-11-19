@@ -1,0 +1,81 @@
+{% set minRowCount = (minRowCount <= 0 ? 5 : minRowCount) %}
+{% set maxRowCount = (maxRowCount <= 0 ? 10 : maxRowCount) %}
+{% if (minRowCount > maxRowCount) %}
+  {% set maxRowCount = minRowCount %}
+{% endif %}
+
+{% if title %}
+  {{ include('components/title.twig', {
+    'title': title.text,
+    'left': title.leftButtons
+  }) }}
+{% endif %}
+
+<div class="adios ui Table Container desktop">
+  <div class="adios ui Table Header">
+    <div class="Row ColumnNames">
+      <div class="cell unordered col-1">
+        {{ columns[0] }}
+      </div>
+      <div class="cell unordered col-5">
+        {{ columns[1] }}
+      </div>
+      <div class="cell unordered col-5">
+        {{ columns[2] }}
+      </div>
+      <div class="cell unordered col-1">
+        {{ columns[3] }}
+      </div>
+    </div>
+    <div class="Row ColumnFilters">
+      <div class="cell unordered col-1"></div>
+      <div class="cell unordered col-5">
+        <input type="text" placeholder="🔍" required="required">
+      </div>
+      <div class="cell unordered col-5">
+        <input type="text" placeholder="🔍" required="required">
+      </div>
+      <div class="cell unordered col-1"></div>
+
+    </div>
+    <div class="adios ui Table Content">
+      {% for rowNr in 1..minRowCount %}
+        <div class="Row">
+          <div class="cell col-1" >
+            <input type="checkbox" style="margin: 0 auto; display: block">
+          </div>
+          <div class="cell col-5">
+            Task Name
+          </div>
+          <div class="cell col-5">
+            {{ include('components/tag.twig', {
+            'text': 'Tag Name',
+          }) }}
+          </div>
+          <div class="cell col-1" style="text-align: center; font-weight: bold;">
+            ...
+          </div>
+        </div>
+      {% endfor %}
+      {% for rowNr in 1..random(maxRowCount - minRowCount) %}
+        <div class="Row">
+          <div class="cell col-1" >
+            <input type="checkbox" style="margin: 0 auto; display: block">
+          </div>
+          <div class="cell col-5">
+            Task Name
+          </div>
+          <div class="cell col-5">
+            {{ include('components/tag.twig', {
+            'text': 'Tag Name',
+          }) }}
+          </div>
+          <div class="cell col-1" style="text-align: center; font-weight: bold;">
+            ...
+          </div>
+        </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+</div>
