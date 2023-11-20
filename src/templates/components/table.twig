@@ -26,6 +26,9 @@
     <div style="background:{{ random(colors) }};display:inline-block;width:2em;height:1em;cursor:pointer;border-radius:0.25em;margin:0.12em">&nbsp;</div>
   {% elseif column['type'] == 'image' %}
     <img src="{{ config.rewriteBase }}/assets/images/image.png" style="height:3.5em">
+  {% elseif column['type'] == 'active' %}
+    {% set status = ['fas fa-check-circle', 'fas fa-times-circle'] %}
+    <i class="{{ random(status) }}"></i>
   {% elseif column['type'] == 'tagList' %}
     {% for i in 0..(2 + random(3)) %}
       <div class="table-tag">{{ random(column['options']) }}</div>
@@ -89,7 +92,31 @@
     border-radius: 0.3em;
     color: black !important;
   }
+.fa-check-circle, .fa-times-circle{
+  padding: auto 0 ;
+  display: block;
+  text-align: center
+}
+  .fa-check-circle{
+    color: var(--cl-main);
+  }
+  
+  .fa-times-circle {
+    color: red;
+  }
 </style>
+
+{% set button1 %}
+    {{ include('components/button.twig', {'cssClass': 'btn-sm btn-success', 'text': 'activate', 'icon': 'fas fa-plus'}) }}
+{% endset %}
+
+{% set button2 %}
+    {{ include('components/button.twig', {'cssClass': 'btn-sm btn-danger', 'text': 'deactivate', 'icon': 'fas fa-plus'}) }}
+{% endset %}
+{% set buttons = [button1, button2] %}
+
+
+
 <div class="shadow-sm">
   <div class="adios ui Table Container desktop">
     <div class="adios ui Table Header">
@@ -105,13 +132,14 @@
           <div class="cell unordered">
             {% if column['type'] == 'varchar' or column['type'] == 'int' or column['type'] == 'text' %}
               <input type="text" placeholder="🔍" required="required">
-            {% elseif column['type'] == 'lookup' %}
+            {% elseif column['type'] == 'lookup' or column['type'] == 'active' %}
               <select required="required">
                 <option value="">Zvoľte možnosť</option>
                 {% for option in column['options'] %}
                   <option>{{ option }}</option>
                 {% endfor %}
               </select>
+            {% elseif column['type'] == 'activeButton' %}
             {% endif %}
           </div>
         {% endfor %}
@@ -120,14 +148,22 @@
         {% for rowNr in 1..minRowCount %}
           <div class="Row" onclick="{{ onclick }}">
             {% for column in columns %}
+              {% if column['type'] == 'activeButton' %}
+               <div class="cell">{{ random(buttons) }}</div>
+              {% else %}
               <div class="cell">{{ _self.cellContent(config, column ?? '') }}</div>
+              {% endif %}
             {% endfor %}
           </div>
         {% endfor %}
         {% for rowNr in 1..random(maxRowCount - minRowCount) %}
           <div class="Row" onclick="{{ onclick }}">
             {% for column in columns %}
+              {% if column['type'] == 'activeButton' %}
+               <div class="cell">{{ random(buttons) }}</div>
+              {% else %}
               <div class="cell">{{ _self.cellContent(config, column ?? '') }}</div>
+              {% endif %}
             {% endfor %}
           </div>
         {% endfor %}
