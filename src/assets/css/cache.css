@@ -8467,6 +8467,16 @@ input[type="button"].btn-block {
 
 }
 
+.todo-tag {
+  background-color: var(--blue);
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10px;
+}
+
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
   border-color: var(--cl-main);
 }
