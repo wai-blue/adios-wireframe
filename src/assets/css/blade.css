@@ -1,0 +1,21 @@
+.sidebar .nav-item .nav-link span  {
+  font-size: 14pt;
+}
+
+.sidebar .nav-item .nav-link i {
+  font-size: 14pt;
+  margin-right: 10px;
+}
+
+.popover-button {
+  transition: background-color 0.2s ease;
+}
+.popover-button:hover {
+  background-color: lightgray;
+  border-radius: 5px;
+  cursor: pointer;
+  color: black;
+}
+.popover-button {
+  height: 30px;
+}

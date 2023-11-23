@@ -8477,6 +8477,33 @@ input[type="button"].btn-block {
   padding: 0 10px;
 }
 
+.tag-deactive {
+  display: inline-block;
+  border: solid 1px var(--cl-gray-3);
+  border-radius: 10px;
+  text-align: center;
+  color: var(--cl-gray-3);
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10px;
+}
+
+.tag-active {
+  display: inline-block;
+  background-color: var(--blue);
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10px;
+}
+
+.tag-active:hover, .tag-deactive:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
   border-color: var(--cl-main);
 }

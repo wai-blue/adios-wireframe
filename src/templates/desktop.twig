@@ -7,11 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel='shortcut icon' href='{{ config.rewriteBase }}/favicon.png'>
+  <link rel='shortcut icon' href='{{ config.rewriteBase }}//assets/images/favicon.png'>
   <title>{{ config.projectName }} | Wireframe</title>
   <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/cache.css' rel="stylesheet">
+  <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/blade.css' rel="stylesheet">
   <script src='{{ config.rewriteBase }}/assets/js/cache.js'></script>
   <script src='{{ config.rewriteBase }}/index.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   {% if config.skin != '' %}
     <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/skins/{{ config.skin }}.css' rel="stylesheet">
   {% endif %}
@@ -29,7 +31,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ config.rewriteBase }}">
         <div class="sidebar-brand-icon">
-          <img src="{{ config.rewriteBase }}/logo.png" />
+          <img src="{{ config.rewriteBase }}/assets/images/logo.png" />
         </div>
       </a>
 
