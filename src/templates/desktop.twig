@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel='shortcut icon' href='{{ config.rewriteBase }}/favicon.png'>
-  <title>{{ config.projectName }} | Wireframe</title>
+  <title>{{ config.projectName }}</title>
   <link rel=stylesheet type='text/css' href='{{ config.rewriteBase }}/assets/css/cache.css' rel="stylesheet">
   <script src='{{ config.rewriteBase }}/assets/js/cache.js'></script>
   <script src='{{ config.rewriteBase }}/index.js'></script>
@@ -50,7 +50,10 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar static-top row shadow">
-          <div class="col col-10">{{ config.projectName }} | Wireframe</div>
+          <div class="col col-10">
+            {{ config.projectName }}
+            {{ config.desktopHeader|raw }}
+          </div>
 
           <!-- Topbar Navbar -->
           <div class="col col-2">

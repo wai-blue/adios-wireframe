@@ -6,7 +6,7 @@
       {% for option in options %}
         <a
           href="#"
-          class="btn btn-small {% if option == default %} btn-primary {% endif %} mr-1 {{ btnCssClass }}"
+          class="btn btn-small mb-1 {% if option == default %} btn-primary {% endif %} mr-1 {{ btnCssClass }}"
           onclick="
             {% if not multiselect %}
               $(this).closest('.input-content').find('.btn').removeClass('btn-primary');

@@ -9,7 +9,7 @@ class Loader {
   public array $config = [];
   public array $data = [];
 
-  public function __construct(array $options, array $config, $data) {
+  public function __construct(array $options, array $config, array $data) {
     $this->options = $options;
     $this->config = $config;
     $this->data = $data;

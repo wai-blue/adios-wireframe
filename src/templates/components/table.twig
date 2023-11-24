@@ -12,7 +12,16 @@
     "Vivamus varius magna fermentum dolor varius, vel scelerisque ante mollis."
   ] %}
   {% if column['type'] == 'varchar' %}
-    {{ random(lipsumTexts)|slice(0, 15) }}
+    {% if column['sampleValues'] %}
+      {{ random(column['sampleValues']) }}
+    {% elseif column['format'] == 'email' %}
+      {% set emails = ['joe.hook@example.com', 'peter.bradley@example.com', 'anthony.hopkirk@example.com'] %}
+      {{ random(emails) }}
+    {% else %}
+      {{ random(lipsumTexts)|slice(0, 15) }}
+    {% endif %}
+  {% elseif column['type'] == 'int' %}
+    {{ random(1, 10) }}
   {% elseif column['type'] == 'text' %}
     {{ random(lipsumTexts) }}
   {% elseif column['type'] == 'time' %}

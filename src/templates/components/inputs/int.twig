@@ -2,7 +2,13 @@
   <div class="input-title">{{ title }}</div>
   {% if description %}<div class="input-description">{{ description }}</div>{% endif %}
   <div class="input-content">
-    <input type="text" value="{{ value }}" style="width:5em">
+    {% if enumValues is iterable %}
+      <select>
+        {% for option in enumValues %} <option>{{ option }}</option>{% endfor %}
+      </select>
+    {% else %}
+      <input type="text" value="{{ value }}" style="width:5em">
+    {% endif %}
     {{ unit }}
   </div>
 </div>
