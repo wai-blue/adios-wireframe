@@ -1,23 +1,29 @@
 <div class="card shadow-sm mb-2 ">
   <div class="card-header py-2">
     <div class="row">
-      <div class="col-11">
-        <h6 class="m-2 font-weight-bold text-primary">{{ title }}</h6>
-      </div>
-      <div class="col-1">
-        <button type="button" class="btn" data-toggle="popover">
-          <i class="fas fa-cog"></i>
-        </button>
-      </div>
-      <script>
-        $(document).ready(function () {
-          $('[data-toggle="popover"]').popover({
-            html: true,
-            trigger: 'focus',
-            content: '<div class="popover-button"><div class="row"><div class="col-1"><i class="fas fa-cog"></i></div><div class="col"><p>Settings</p></div></div></div><div class="popover-button"><div class="row"><div class="col-1"><i class="fas fa-cog"></i></div><div class="col"><p>Refresh</p></div></div></div>'
+      {% if settings %}
+        <div class="col-11">
+      {% else %}
+        <div class="col-12">
+      {% endif %}
+          <h6 class="m-2 font-weight-bold text-primary">{{ title }}</h6>
+        </div>
+      {% if settings %}
+        <div class="col-1">
+          <button type="button" class="btn" data-toggle="popover">
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+        <script>
+          $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({
+              html: true,
+              trigger: 'focus',
+              content: '<div class="popover-button"><div class="row"><div class="col-1"><i class="fas fa-cog"></i></div><div class="col"><p>Settings</p></div></div></div><div class="popover-button"><div class="row"><div class="col-1"><i class="fas fa-cog"></i></div><div class="col"><p>Refresh</p></div></div></div>'
+            });
           });
-        });
-      </script>
+        </script>
+      {% endif %}
     </div>
   </div>
   

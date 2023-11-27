@@ -1,0 +1,26 @@
+<ul class="nav nav-tabs">
+  {% for tab in tabs %}
+    {% if loop.index == 1 %}
+      <li class="active nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#{{ tabName | default('menu') }}{{ loop.index }}">{{ tab.title }}</a>
+      </li>
+    {% else %}
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#{{ tabName | default('menu') }}{{ loop.index }}">{{ tab.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<div class="tab-content">
+  {% for tab in tabs %}
+    {% if loop.index == 1 %}
+      <div id="{{ tabName | default('menu') }}{{ loop.index }}" class="tab-pane fade in active show">
+        {{ tab.content|raw }}
+      </div>
+    {% else %}
+      <div id="{{ tabName | default('menu') }}{{ loop.index }}" class="tab-pane fade">
+        {{ tab.content|raw }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

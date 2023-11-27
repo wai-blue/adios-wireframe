@@ -19,3 +19,13 @@
 .popover-button {
   height: 30px;
 }
+
+.todo-tag {
+  background-color: var(--blue);
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 10px;
+}
