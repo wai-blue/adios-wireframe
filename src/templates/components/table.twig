@@ -92,11 +92,11 @@
     border-radius: 0.3em;
     color: black !important;
   }
-.fa-check-circle, .fa-times-circle{
-  padding: auto 0 ;
-  display: block;
-  text-align: center
-}
+  .fa-check-circle, .fa-times-circle{
+    padding: auto 0 ;
+    display: block;
+    text-align: center
+  }
   .fa-check-circle{
     color: var(--cl-main);
   }
@@ -104,14 +104,28 @@
   .fa-times-circle {
     color: red;
   }
+  .btn-success {
+    background-color: var(--cl-main);
+    border-color: var(--cl-main);
+  }
+  .btn-success:hover, .btn-success:active {
+    background-color: var(--cl-hove);
+    border-color: var(--cl-main);
+  }
+  
+  .btn-success, .btn-danger {
+    display: block;
+    width: 82px;
+    margin: 0 auto;
+  }
 </style>
 
 {% set button1 %}
-    {{ include('components/button.twig', {'cssClass': 'btn-sm btn-success', 'text': 'activate', 'icon': 'fas fa-plus'}) }}
+    {{ include('components/activate-button.twig', {'cssClass': 'btn-sm btn-success', 'text': 'activate', 'icon': 'fas fa-plus'}) }}
 {% endset %}
 
 {% set button2 %}
-    {{ include('components/button.twig', {'cssClass': 'btn-sm btn-danger', 'text': 'deactivate', 'icon': 'fas fa-plus'}) }}
+    {{ include('components/activate-button.twig', {'cssClass': 'btn-sm btn-danger', 'text': 'deactivate', 'icon': 'fas fa-plus'}) }}
 {% endset %}
 {% set buttons = [button1, button2] %}
 

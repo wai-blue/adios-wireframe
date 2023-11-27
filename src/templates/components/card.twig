@@ -1,15 +1,11 @@
 <div class="card shadow-sm mb-2 ">
   <div class="card-header py-2">
     <div class="row">
-      {% if settings %}
-        <div class="col-11">
-      {% else %}
-        <div class="col-12">
-      {% endif %}
+        <div class="col">
           <h6 class="m-2 font-weight-bold text-primary">{{ title }}</h6>
         </div>
       {% if settings %}
-        <div class="col-1">
+        <div>
           <button type="button" class="btn" data-toggle="popover">
             <i class="fas fa-cog"></i>
           </button>

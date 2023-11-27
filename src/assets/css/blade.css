@@ -20,6 +20,10 @@
   height: 30px;
 }
 
+.tab-content {
+  margin-top: 20px;
+}
+
 .todo-tag {
   background-color: var(--blue);
   border-radius: 10px;
@@ -28,4 +32,47 @@
   margin: 0 auto;
   width: fit-content;
   padding: 0 10px;
+}
+
+.form-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-container .form-col {
+  width: 25%;
+  min-width: 300px;
+}
+
+.form-container .form-col .card {
+  height: 100%;
+}
+
+@media screen and (max-width: 1600px) {
+  .form-container {
+    
+    justify-content: space-between;
+  }
+
+  .form-container .form-col {
+    width: 32%;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+
+  .form-container .form-col {
+    width: 48%;
+  }
+}
+@media screen and (max-width: 766px) {
+
+  .form-container .form-col {
+    width: 100%;
+  }
+  .form-container {
+    justify-content: start;
+  }
 }
