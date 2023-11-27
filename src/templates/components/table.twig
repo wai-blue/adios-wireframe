@@ -21,7 +21,13 @@
       {{ random(lipsumTexts)|slice(0, 15) }}
     {% endif %}
   {% elseif column['type'] == 'int' %}
-    {{ random(1, 10) }}
+    {% if column['enumValues'] %}
+      {{ random(column['enumValues']) }}
+    {% else %}
+      {{ random(column['min'] ?? 1, column['max'] ?? 10) }}
+    {% endif %}
+  {% elseif column['type'] == 'float' %}
+    {{ random(100, 1000)/100 }}
   {% elseif column['type'] == 'text' %}
     {{ random(lipsumTexts) }}
   {% elseif column['type'] == 'time' %}
@@ -42,6 +48,8 @@
   {% else %}
     ...
   {% endif %}
+
+  {{ column['unit'] }}
 {% endmacro %}
 {% set minRowCount = (minRowCount <= 0 ? 3 : minRowCount) %}
 {% set maxRowCount = (maxRowCount <= 0 ? 15 : maxRowCount) %}
@@ -104,8 +112,13 @@
     <div class="adios ui Table Header">
       <div class="Row ColumnNames">
         {% for column in columns %}
-          <div class="cell unordered">
+          <div class="cell {% if (column['defaultOrder'] == '') %} unordered {% else %} asc_ordered {% endif %}">
             {{ column['title'] }}
+            {% if (column['defaultOrder'] == 'asc') %}
+              <i class="fas fa-chevron-up order_asc"></i>
+            {% elseif (column['defaultOrder'] == 'desc') %}
+              <i class="fas fa-chevron-up order_desc"></i>
+            {% endif %}
           </div>
         {% endfor %}
       </div>

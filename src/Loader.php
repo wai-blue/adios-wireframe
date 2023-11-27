@@ -27,13 +27,14 @@ class Loader {
     $html = '';
     $wireframe = $wireframe ?? 'index';
     $isWindow = (bool) ($this->options['isWindow'] ?? false);
+    $isPublicWebsite = (bool) ($this->options['isPublicWebsite'] ?? false);
 
     $wireframeContentHtml = $this->twig->load($wireframe . '.twig')->render([
       'config' => $this->config,
       'data' => $this->data,
     ]);
 
-    if ($isWindow) {
+    if ($isPublicWebsite || $isWindow) {
       $html = $wireframeContentHtml;
     } else {
       $html = $this->twig->load($this->config['mainTemplate'] . '.twig')->render([
