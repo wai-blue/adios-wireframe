@@ -45,6 +45,8 @@
     {% for i in 0..(2 + random(3)) %}
       <div class="table-tag">{{ random(column['options']) }}</div>
     {% endfor %}
+  {% elseif column['type'] == 'customHtml' %}
+    {{ column['html']|raw }}
   {% else %}
     ...
   {% endif %}
@@ -107,7 +109,7 @@
     color: black !important;
   }
 </style>
-<div class="shadow-sm m-2">
+<div class="shadow-sm">
   <div class="adios ui Table Container desktop">
     <div class="adios ui Table Header">
       <div class="Row ColumnNames">

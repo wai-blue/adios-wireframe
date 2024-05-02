@@ -8,6 +8,7 @@ class Loader {
   public array $options = [];
   public array $config = [];
   public array $data = [];
+  public array $routing = [];
 
   public function __construct(array $options, array $config, array $data) {
     $this->options = $options;
@@ -26,6 +27,12 @@ class Loader {
       'str2url',
       function ($string) {
         return $this->str2url($string);
+      }
+    ));
+    $this->twig->addFunction(new \Twig\TwigFunction(
+      'dump',
+      function ($var) {
+        return var_dump($var);
       }
     ));
   }
@@ -111,6 +118,27 @@ class Loader {
     unset($_SESSION['user']);
   }
 
+  public function setRouting(array $routing): void {
+    $this->routing = $routing;
+  }
+
+  public function replaceRouteVariables($routeParams, $variables) {
+    if (is_array($routeParams)) {
+      foreach ($routeParams as $paramName => $paramValue) {
+
+        if (is_array($paramValue)) {
+          $routeParams[$paramName] = $this->replaceRouteVariables($paramValue, $variables);
+        } else {
+          foreach ($variables as $k2 => $v2) {
+            $routeParams[$paramName] = str_replace('$'.$k2, $v2, $routeParams[$paramName]);
+          }
+        }
+      }
+    }
+
+    return $routeParams;
+  }
+
   /**
    * Render the template
    *
@@ -123,31 +151,46 @@ class Loader {
     $isWindow = (bool) ($this->options['isWindow'] ?? false);
     $isPublicWebsite = (bool) ($this->options['isPublicWebsite'] ?? false);
 
-    $wireframeContentHtml = $this->twig->load($wireframe . '.twig')->render([
+    $params = $_GET;
+
+    $hideDesktop = FALSE;
+
+    foreach ($this->routing as $routePattern => $route) {
+      if (preg_match($routePattern, $wireframe, $m)) {
+        $wireframe = $route['wireframe'];
+        $hideDesktop = $route['hideDesktop'] ?? FALSE;
+
+        $route['params'] = $this->replaceRouteVariables($route['params'], $m);
+
+        foreach ($route['params'] as $k => $v) {
+          $params[$k] = $v;
+        }
+      }
+    }
+
+    $renderParams = [
       'config' => $this->config,
       'data' => $this->data,
-    ]);
+      'userAuthed' => $this->isUserAuthed(),
+      'params' => $params,
+      '_COOKIE' => $_COOKIE,
+    ];
 
-    if ($isPublicWebsite || $isWindow) {
+    $wireframeContentHtml = $this->twig->load($wireframe . '.twig')->render($renderParams);
+
+    if ($isPublicWebsite || $isWindow || $hideDesktop) {
       $html = $wireframeContentHtml;
     } else {
+
+      $renderParams['content'] = $wireframeContentHtml;
       if (
         !empty($this->config['auth']['user'])
         && !empty($this->config['auth']['pass'])
         && !$this->isUserAuthed()
       ) {
-        $html = $this->twig->load('login.twig')->render([
-          'config' => $this->config,
-          'data' => $this->data,
-          'content' => $wireframeContentHtml,
-          'userAuthed' => $this->isUserAuthed(),
-        ]);
+        $html = $this->twig->load('login.twig')->render($renderParams);
       } else {
-        $html = $this->twig->load($this->config['mainTemplate'] . '.twig')->render([
-          'config' => $this->config,
-          'data' => $this->data,
-          'content' => $wireframeContentHtml,
-        ]);
+        $html = $this->twig->load($this->config['mainTemplate'] . '.twig')->render($renderParams);
       }
     }
 

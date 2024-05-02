@@ -1,0 +1,17 @@
+.btn {
+  box-shadow: 0 4px 9px -4px var(--primary) !important;
+  /* text-transform: uppercase; */
+  font-size: 0.78em;
+}
+
+.btn.btn-success {
+  box-shadow: 0 4px 9px -4px var(--success) !important;
+}
+
+.btn.btn-danger {
+  box-shadow: 0 4px 9px -4px var(--danger) !important;
+}
+
+.btn.btn-light {
+  box-shadow: none !important;
+}
